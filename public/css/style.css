@@ -8,6 +8,10 @@ body {
     text-rendering: optimizeLegibility;
 }
 
+.property-detail {
+    padding-top: 2rem
+}
+
 h1 {
     font-size: 2rem;
 }
@@ -890,6 +894,10 @@ a .customfab.fa-youtube {
 .breadcrumb-holder {
     padding: 0;
     background-color: #fff;
+}
+
+.breadcrumb.float-right {
+    float: left!important;
 }
 
 .title-hr {
@@ -1836,7 +1844,7 @@ p img {
     }
     .property-sidebar {
         height: 100vh;
-        margin-top: 118px;
+        margin-top: 122px;
     }
     .property-details {
         padding: 1.5rem 0;
@@ -1866,5 +1874,11 @@ p img {
         font-weight: bold;
         margin-top: 2rem;
         margin-right: 4px;
+    }
+    .breadcrumb.float-right {
+        float: right!important;
+    }
+    .property-detail {
+        padding-top: 0;
     }
 }

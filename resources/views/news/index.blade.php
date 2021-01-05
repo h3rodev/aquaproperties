@@ -20,12 +20,10 @@
             </div>
             <div class="col-md-4">
                 <nav class="breadcrumb-holder">
-                    <div class="container">
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item"><a href="/news">News</a></li>
                         </ol>
-                    </div>
                 </nav>
             </div>
         </div>

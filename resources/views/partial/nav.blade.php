@@ -70,7 +70,7 @@
           <a class="dropdown-item" href="/projects/j5/">J5</a>
           <a class="dropdown-item" href="/projects/j8/">J8</a>
           <a class="dropdown-item" href="/projects/oten/">OTen</a>
-          <a class="dropdown-item" href="/projects/mysk-by-shaza-jumeirah/">Mysk by Shaza</a>
+          <a class="dropdown-item" href="/projects/mysk-by-shaza/">Mysk by Shaza</a>
           <a class="dropdown-item" href="/projects">View All</a>
         </div>
       </li>

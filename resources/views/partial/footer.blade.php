@@ -199,100 +199,13 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="footer-social-section">
-            <div class="container">
-                <div class="follow-us-on-social">
-                    <h5>Follow Us On Social Media</h5>
-                    <ul class="social-icons-holder">
-                        <li><a target="_blank" href="https://www.facebook.com/aquaproperties/"><i class="customfab fab fa-fab fa-facebook"></i></a></li>
-                        <li><a target="_blank" href="https://www.linkedin.com/company/2887822/admin/"><i class="customfab fab fa-fab fa-linkedin"></i></a></li>
-                        <li><a target="_blank" href="https://twitter.com/aquaproperties"><i class="customfab fab fa-fab fa-twitter"></i></a></li>
-                        <li><a target="_blank" href="https://www.instagram.com/aquapropertiesdubai/"><i class="customfab fab fa-fab fa-instagram"></i></a></li>
-                        <li><a target="_blank" href="https://www.youtube.com/channel/UCKFjL5RvMKmTxFGw0DrFINQ?sub_confirmation=1"><i class="customfab fab fa-fab fa-youtube"></i></a></li>
-                    </ul>
-                </div>
-                <div class="language-we-speak">
-                    <h5>Languages We Speak</h5>
-                    <ul id="lang-flag-holder">
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_19.svg" alt="Flags" width="16" height="16"  >
-                        </li>
-                        <li><img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_18.svg" alt="Flags" width="16" height="16"  >
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_17.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_16.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_15.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_14.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_13.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_12.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_11.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_10.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_9.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_8.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_7.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_6.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_5.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_4.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_2.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        <li>
-                            <img class="flags-icon" src="https://n3j4g9z9.rocketcdn.me/wp-content/uploads/2019/07/flag_1.svg" alt="Flags" width="16" height="16"  >
-                            
-                        </li>
-                        </ul>
-                </div>
-            </div>
-        </div> -->
+
 
         
         <div class="footer-copyright">
 
             <div class="container">
-                <p class="text-center">© {{ date('Y') }} <a href="https://aquaproperties" target="_self">AQUA Properties</a>. All rights reserved</p>
+                <p class="text-center">© {{ date('Y') }} <a href="https://aquaproperties.com" target="_self">AQUA Properties</a>. All rights reserved</p>
             </div>
         </div>
     </div>

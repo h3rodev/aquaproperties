@@ -49,7 +49,7 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div class="property-card">
+                <div class="property-card property-detail">
                     <span class="spacer-50"></span>
                     <h4 class="listing-location">{{ str_replace('-', ' ', ucwords( $property['sub_loc_name'] ) ) }}, {{ str_replace('-', ' ', ucwords( $property['loc_name'] ) ) }}</h4>
                     <h5 class="listing-card-price">AED {{ number_format($property['price']) }} <?php echo $property['property_for'] == 'rent' ? '/ '.$property['frequency'] : ''; ?></h5>
@@ -217,7 +217,7 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                     </div>
 
                     <div class="selections-holder mb-4" style="background-image: url(/img/luxury-cover-image-1.jpg);">
-                        <a href="/the-selection/">
+                        <a href="#">
                             <img class="responsive-img" src="/img/svg/the-selection-logo-white.svg" alt="">
                         </a>
                         <div class="slideroverlay"></div>

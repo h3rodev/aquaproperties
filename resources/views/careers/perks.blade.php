@@ -19,13 +19,11 @@
             </div>
             <div class="col-md-4">
                 <nav class="breadcrumb-holder">
-                    <div class="container">
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item"><a href="/">Home</a></li>
                             <li class="breadcrumb-item"><a href="/join-our-team">Join Our Team</a></li>
                             <li class="breadcrumb-item"><a href="/join-our-team/aqua/{{ $perk->slug }}">Join Our Team</a></li>
                         </ol>
-                    </div>
                 </nav>
             </div>
         </div>

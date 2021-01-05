@@ -18,7 +18,7 @@ class CreatePropertyAmenitiesTable extends Migration
             $table->string('reference');
             $table->string('com_private');
             $table->string('title');
-            $table->string('slug')();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

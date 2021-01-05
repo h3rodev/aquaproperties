@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Database\Eloquent\Model;
 
-use App\Property;
+// use App\Property;
 
 class Member extends \TCG\Voyager\Models\Member
 {
