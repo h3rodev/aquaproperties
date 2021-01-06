@@ -223,7 +223,7 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                         </div>
 
                         <div class="card-footer">
-                            <a type="button" class="btn-floating btn-fb">BRN: {{ $member->broker_number }}</a>
+                            <!-- <a type="button" class="btn-floating btn-fb">BRN: {{ $member->broker_number }}</a> -->
                             @if( $property['property_for'] == 'sale' )
                                 <a type="button" class="btn-floating btn btn-fb" target="_blank" href="https://wa.me/971564096610?text=Hi! I saw a property on your website with reference %23{{ $property['reference'] }}. I would like to know if it's still available for {{ $property['property_for'] }}?"><i class="fab fa-whatsapp"></i></a>
                             @else
@@ -235,9 +235,9 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                             class="btn-small btn inquiry-btn" 
                             href="#property-inquiry-dropdown" 
                             data-toggle="collapse"
-                            aria-expanded="true">Inquire</a>
+                            aria-expanded="true">Arrange a viewing</a>
                             
-                            <a type="button" href="/team/{{ $member->slug }}" class="btn-small btn">View Listings</a>
+                            <a type="button" href="/team/{{ $member->slug }}" class="btn-small btn">Listings</a>
                         </div>
                         
                         <div class="card-body collapse text-left pb-4 aqua-gray-light show" id="property-inquiry-dropdown">
@@ -253,6 +253,9 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                                 <div class="form-group">
                                 <input value="<?php echo isset($_GET['phone_number']) ? $_GET['phone_number'] : ''; ?>" name="phone_number" type="tel" class="form-control" id="phone_number" aria-describedby="phoneHelp" placeholder="Phone with country code" required="required" aria-required="true">
                                 </div>
+
+                                <input type='text' class="form-control" id='daypicker' name='daypicker' placeholder="Pick your preferred date and time"/>
+
                                 <small id="emailHelp" class="form-text text-muted mb-3">We'll never share your information with anyone else.</small>
 
                                 <input value="<?php echo isset($_GET['subject']) ? $_GET['subject'] : $pagetitle; ?>" name="subject" type="hidden" id="subject">
@@ -262,9 +265,9 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                                 <input value="<?php echo isset($_GET['medium']) ? $_GET['medium'] : ''; ?>" name="medium" type="hidden" id="medium">
                                 <input value="<?php echo $property['reference']; ?>" name="reference_number" type="hidden" id="reference_number">
                                 <input value="<?php echo $member->private_name; ?>" name="agent" type="hidden" id="agent">
+                                <input value="<?php echo $property['assigned_to_reference']; ?>" name="agentid" type="hidden" id="agentid">
 
-                                <button type="submit" class="custom-btn btn btn-primary aqua-blue btn-block">Inquire Now</button>
-                            
+                                <button type="submit" class="custom-btn btn btn-primary aqua-blue btn-block">Book now</button>
                             </form>
                         </div>
                         
@@ -430,6 +433,8 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
         let medium = jQuery('#medium').val();
         let reference_number = jQuery('#reference_number').val();
         let agent = jQuery('#agent').val();
+        let agentid = jQuery('#agentid').val();
+        let _daypicker = jQuery('#daypicker').val();
 
         jQuery.ajax({
             url: "/form-submit",
@@ -449,10 +454,37 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                 agent:agent,
             },
             success:function(response){
-                location.href = '/thank-you/?name='+name+'&subject='+subject;
-                console.log(response);
+                sendToRex();
+                // location.href = '/thank-you/?name='+name+'&subject='+subject;
+                // console.log(response);
             },
         });
+        function sendToRex() {
+            jQuery.ajax({
+                url: "https://api.rexcrm.com/leads",
+                type:"POST",
+                data:{
+                    "_token": "{{ csrf_token() }}",
+                    'name':name,
+                    'email':email,
+                    'mobile':phone_number,
+                    'country': 'United Arab Emirates',
+                    subject:subject ? subject : $pagetitle,
+                    'source':source ? source : 'Organic',
+                    'sub_source':sub_source ? sub_source : 'Website Listing',
+                    'campaign':campaign ? campaign : 'Generic',
+                    'medium':medium ? medium : 'Website',
+                    'listing_reference':reference_number,
+                    'agent_reference':agentid,
+                    'notes': 'Would like to book a booking on '+ _daypicker
+                },
+                success:function(response){
+                    location.href = '/thank-you/?name='+name+'&subject='+subject;
+                    console.log(response);
+                },
+            });
+        }
+
     });
 </script>
 <script src="//maps.googleapis.com/maps/api/js?key=AIzaSyAASCnNDb_7JnYj4YKICOKikkzICRSxej8&callback=initMap"></script>

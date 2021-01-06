@@ -2,14 +2,14 @@
 
 namespace App;
 
-// use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Model;
 
 // use App\Property;
 
-class Member extends \TCG\Voyager\Models\Member
+class Member extends Model
 {
     protected $fillable = [
-        'reference', 'public_name', 'private_name', 'slug', 'mobile', 'email', 'job_title', 'department', 'profile_picture', 'description', 'broker_number',
+        'reference', 'public_name', 'private_name', 'slug', 'mobile', 'email',  'status', 'job_title', 'department', 'profile_picture', 'description', 'broker_number',
     ];
 
     public static function findBySlug($slug) 

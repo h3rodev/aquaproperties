@@ -24,8 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {   
-        $schedule->command('loadagents')->everyMinute();
-        $schedule->command('inspire')->everyMinute();
+        $schedule->command('command:loadproperties')->dailyAt('00:00');
+        $schedule->command('command:loadagents')->dailyAt('00:00');
+        $schedule->command('command:loadcommunities')->dailyAt('00:00');
+
     }
 
     /**

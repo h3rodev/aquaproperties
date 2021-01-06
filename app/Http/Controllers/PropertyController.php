@@ -154,6 +154,54 @@ class PropertyController extends Controller
             ]  );
     }
 
+    public function searchByAreaOnly($category, $for, $subloc, $area)
+    {
+        // $properties = Property::simplePaginate(9);
+        $properties = Property::where('category_name','=', $category)
+        ->Where('property_for', '=', $for)
+        ->Where('loc_area_name', '=', $area)
+        ->Where('loc_name', '=', '')
+        ->Where('sub_loc_name', '=', $subloc)
+        ->orderBy('is_latest', 'desc')->paginate(9);
+
+            $community_desc = Communities::Where('community_name', '=', str_replace('-', ' ', ucwords($area) ))->first();
+            // $groupByPropertyType = Property::all()->groupBy('property_type');
+            // $groupByPropertyFor = Property::all()->groupBy('property_for');
+            // $groupByCategories = Property::all()->groupBy('category_name');
+    
+            // $groupByBed= Property::all()->groupBy('beds')->sortDesc();
+            // $groupByBath = Property::all()->groupBy('baths');
+            // $groupBySize = Property::all()->groupBy('build_up_area');
+    
+            // $groupByPrice = Property::all()->groupBy('price');
+    
+            // $groupByLocName = Property::all()->groupBy('loc_name');
+            // $groupBySubLocName = Property::all()->groupBy('sub_loc_name');
+            $amenities = PropertyAmenities::all();
+            $features = PropertyFeatures::all();
+            $allGeo = Property::all();
+
+        return view('properties.index', [
+            'properties' => $properties, 
+            'cat' => $category, 
+            'for' => $for, 
+            'loc_name' => '', 
+            'loc_area_name' => $area, 
+            'sub_loc_name' => $subloc, 
+            'community_desc' => $community_desc,
+            // 'groupByCategories' => $groupByCategories, 
+            // 'groupByLocName' => $groupByLocName, 
+            // 'groupBySubLocName' => $groupBySubLocName,
+            // 'groupByBed' => $groupByBed,
+            // 'groupByPrice' => $groupByPrice,
+            // 'groupByPropertyFor' => $groupByPropertyFor,
+            // 'groupByLocName' => $groupByLocName,
+            'amenities' => $amenities,
+            'features' => $features,  
+            'allGeo' => $allGeo,        
+            ]  );
+    }
+
     public function searchByLoc($category, $for, $loc)
     {
         // $properties = Property::simplePaginate(9);

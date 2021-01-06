@@ -19,7 +19,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta/dist/css/bootstrap-select.min.css">
-
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css" integrity="sha512-yye/u0ehQsrVrfSd6biT17t39Rg9kNc+vENcCXZuMz2a+LWFGvXUnYuWUW6pbfYj1jcBb/C39UZw2ciQvwDDvg==" crossorigin="anonymous" />
 
 
     <link rel="stylesheet" href="/css/style.css">
@@ -172,9 +173,28 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="//cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta/dist/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="//twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js" integrity="sha512-DNeDhsl+FWnx5B1EQzsayHMyP6Xl/Mg+vcnFPXGNjUZrW28hQaa1+A4qL9M+AiOMmkAhKAWYHh1a+t6qxthzUw==" crossorigin="anonymous"></script>
 
     <script>
+        var input = document.querySelector("#phone_number");
+
+        window.intlTelInput(input, {
+            initialCountry: "auto",
+            geoIpLookup: function(success, failure) {
+                $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                var countryCode = (resp && resp.country) ? resp.country : "us";
+                success(countryCode);
+                });
+            },
+        });
+
+
     $(document).ready(function() {
+       
+        $('#daypicker').datetimepicker();
+        
 
         var locations = new Bloodhound({
             datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -193,7 +213,10 @@
         });
     });
     </script>
+
     <script src="//code.tidio.co/rubslyml2dnjikzifolwozhynsh7exkl.js" async></script>
+
+    
 </body>
 
 </html>
