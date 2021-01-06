@@ -41,7 +41,8 @@ class LoadCommunities extends Command
      */
     public function handle()
     {
-        $comminities = Http::get('https://api.rexcrm.com/listings/feed/siteListing?page=&limit=')->json();
+        Communities::query()->truncate();
+        $comminities = Http::get('https://api.rexcrm.com/listings/feed/siteListing?api_key=AYAQALUIAMAPDAMH')->json();
         $collection = collect( $comminities['record'] );
         
         

@@ -23,24 +23,54 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
 <nav class="breadcrumb-holder">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            @if($cat ?? 'properties')
-                <li class="breadcrumb-item"><a href="/properties/">Properties</a></li>
-            @endif
-            @if($for ?? '')
-                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for}}-in-dubai">{{  $cat ?? 'properties'}} for {{ $for }} in dubai</a></li>
-            @endif
-            
-            @if($loc_name ?? '')
-                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for}}-in-dubai-{{ $loc_name }}">{{  str_replace('-', ' ', $loc_name) }}</a></li>
-            @endif
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+            <li class="breadcrumb-item"><a href="/properties">Properties in Dubai</a></li>
+<?php
+        if( isset( $cat ) && $cat != '%' ){
+            ?>
+                <li class="breadcrumb-item"><a href="/{{ $cat }}-for-{{$for ?? ''}}-in-dubai">{{  str_replace('_', ' ', $cat) }}</a></li>
+            <?php
+        } else {}
+    ?>
+    
+    <?php
+        if( isset( $for ) && $for != '%'){
+            if( isset( $cat ) && $cat != '%' ){
+                ?>
+                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai">for {{ $for ?? '' }} in Dubai</a></li>
+            <?php
+                
+            } else {
+                ?>
+                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai">for {{ $for ?? '' }}</a></li>
+            <?php
+            }
+        }
+    ?>
 
-            @if($sub_loc_name ?? '')
-                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}">{{  str_replace('-', ' ', $sub_loc_name) }}</a></li>
-            @endif
-            @if($property['reference'] ?? '')
-                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}/{{  $property['reference'] }}">{{ $property['reference'] }}</a></li>
-            @endif
+    <?php
+        if( isset( $loc_name ) && $loc_name != '%' && $loc_name != ''){
+            ?>
+                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}">{{  str_replace('-', ' ', $loc_name) }}</a></li>
+            <?php
+        }
+    ?>
+
+    <?php
+        if( isset( $sub_loc_name ) && $sub_loc_name != '%' && $sub_loc_name != $loc_name && $sub_loc_name != ''){
+            ?>
+                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}">{{  str_replace('-', ' ', $sub_loc_name) }}</a></li>
+            <?php
+        }
+    ?>
+
+    <?php
+        if( isset( $loc_area_name ) && $loc_area_name != '%'){
+            ?>
+                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}//{{ $loc_area_name }}">{{  str_replace('-', ' ', $loc_area_name) }}</a></li>
+            <?php
+        }
+    ?>
         </ol>
     </div>
 </nav>
@@ -51,7 +81,31 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
             <div class="col-md-8">
                 <div class="property-card property-detail">
                     <span class="spacer-50"></span>
-                    <h4 class="listing-location">{{ str_replace('-', ' ', ucwords( $property['sub_loc_name'] ) ) }}, {{ str_replace('-', ' ', ucwords( $property['loc_name'] ) ) }}</h4>
+                    <h4 class="listing-location">
+                    <?php
+                        if( isset( $loc_name ) && $loc_name != '%' && $loc_name != ''){
+                            ?>
+                                <a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}">{{  str_replace('-', ' ', $loc_name) }}</a>
+                            <?php
+                        }
+                    ?>
+
+                    <?php
+                        if( isset( $sub_loc_name ) && $sub_loc_name != '%' && $sub_loc_name != $loc_name && $sub_loc_name != ''){
+                            ?>
+                                <a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}">{{  str_replace('-', ' ', $sub_loc_name) }}</a>
+                            <?php
+                        }
+                    ?>
+
+                    <?php
+                        if( isset( $loc_area_name ) && $loc_area_name != '%'){
+                            ?>
+                                <a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}//{{ $loc_area_name }}">{{  str_replace('-', ' ', $loc_area_name) }}</a>
+                            <?php
+                        }
+                    ?>
+                    </h4>
                     <h5 class="listing-card-price">AED {{ number_format($property['price']) }} <?php echo $property['property_for'] == 'rent' ? '/ '.$property['frequency'] : ''; ?></h5>
                     
                     <div class="property-details-gallery mt-3">

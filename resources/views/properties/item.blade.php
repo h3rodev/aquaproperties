@@ -14,7 +14,7 @@
         @php 
             $gallery_items = explode("|",$property['images_path'] ); 
         @endphp
-        <div><image class="img-fluid" src={{ $gallery_items[0] }} alt={!! $property['title'] !!} /></div>
+        <div><a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}/{{ $property['sub_loc_name'] }}/{{ $property['loc_area_name'] }}/ref-{{ strtolower( $property['reference'] ) }}"><image class="img-fluid" src={{ $gallery_items[0] }} alt={!! $property['title'] !!} /></a></div>
     </div>
 
     <div class="card-body">
@@ -42,7 +42,29 @@
             
         </ul>
         <h5 class="listing-location">
-            <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}/{{ $property['sub_loc_name'] }}">{{ str_replace('-', ' ', ucwords( $property['sub_loc_name'] ) ) }}</a>, <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}">{{ str_replace('-', ' ', ucwords( $property['loc_name'] ) ) }}</a>
+            @if($property['loc_area_name'] && $property['loc_name'] != '')
+            <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}/{{ $property['sub_loc_name'] }}/{{ $property['loc_area_name'] }}">
+                {{ str_replace('-', ' ', ucwords( $property['loc_area_name'] ) ) }}
+            </a>,
+            @else
+            <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}/{{ $property['sub_loc_name'] }}/{{ $property['loc_area_name'] }}">
+                {{ str_replace('-', ' ', ucwords( $property['loc_area_name'] ) ) }}
+            </a>
+            @endif
+
+            @if($property['loc_name'])
+            <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}">
+            {{ str_replace('-', ' ', ucwords( $property['loc_name'] ) ) }}
+            </a>
+            @endif
+
+            @if($property['sub_loc_name'] != $property['sub_loc_name']),
+            <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}/{{ $property['sub_loc_name'] }}">
+            {{ str_replace('-', ' ', ucwords( $property['sub_loc_name'] ) ) }}
+            </a>
+            @endif
+
+            
         </h5>
         <ul class="amenities-list">
 
@@ -62,7 +84,7 @@
     <div class="card-footer">
         <p class="listing-card-price">AED {{ number_format($property['price']) }} <?php echo $property['property_for'] == 'rent' ? '/ '.$property['frequency'] : ''; ?></p>
         <div aria-disabled="true" role="button" tabindex="0" class="property-button">
-            <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}/{{ $property['sub_loc_name'] }}/ref-{{ strtolower( $property['reference'] ) }}">
+            <a href="/{{ $property['category_name'] }}-for-{{ $property['property_for'] }}-in-dubai-{{ $property['loc_name'] }}/{{ $property['sub_loc_name'] }}/{{ $property['loc_area_name'] }}/ref-{{ strtolower( $property['reference'] ) }}">
                 <div class="text-layer">
                     <div class="icon-wrapper "><i class="fas fa-search"></i></div>
                     <div class="text-part"><span>View Details</span></div>

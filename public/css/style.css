@@ -902,7 +902,7 @@ a .customfab.fa-youtube {
 
 .title-hr {
     margin-top: 2rem;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
 }
 
 .breadcrumb {
@@ -1378,6 +1378,7 @@ tr:nth-child(even) {
 .advace-search {
     display: flex;
     align-items: center;
+    flex-flow: wrap;
 }
 
 .search-holder {
@@ -1386,8 +1387,7 @@ tr:nth-child(even) {
 }
 
 .search-holder.price-search {
-    flex: 3;
-    margin-left: 0px;
+    flex: auto;
 }
 
 .search-holder.search-button {
@@ -1880,5 +1880,16 @@ p img {
     }
     .property-detail {
         padding-top: 0;
+    }
+    .advace-search {
+        flex-flow: unset;
+    }
+    .search-holder.price-search {
+        flex: 3;
+        margin-left: 0px;
+    }
+    .title-hr {
+        margin-top: 2rem;
+        margin-bottom: 4rem;
     }
 }

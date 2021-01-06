@@ -28,13 +28,17 @@ Route::get('/properties', 'PropertyController@index');
 Route::get('/{category}-for-{for}-in-dubai', 'PropertyController@searchByCategoryFor');
 Route::get('/{category}-for-{for}-in-dubai-{loc?}', 'PropertyController@searchByLoc');
 
+
 Route::get('/{category}-for-{for}-in-dubai-/{subloc?}', 'PropertyController@searchBySubLocOnly');
 
 Route::get('/{category}-for-{for}-in-dubai-{loc?}/{subloc?}', 'PropertyController@searchBySubLoc');
-Route::get('/{category}-for-{for}-in-dubai-{loc}/{subloc}/ref-{ref}', 'PropertyController@searchByRef');
+
+Route::get('/{category}-for-{for}-in-dubai-{loc?}/{subloc?}/{area?}', 'PropertyController@searchByArea');
+
+Route::get('/{category}-for-{for}-in-dubai-{loc}/{subloc}/{area}/ref-{ref}', 'PropertyController@searchByRef');
 
 Route::get('/{category}-for-{for}-in-dubai-/{subloc?}', 'PropertyController@searchBySubLocOnly');
-Route::get('/{category}-for-{for}-in-dubai-/{subloc}/ref-{ref}', 'PropertyController@searchByRefOnly');
+Route::get('/{category}-for-{for}-in-dubai-/{subloc}/{area}/ref-{ref}', 'PropertyController@searchByRefOnly');
 
 Route::get('/property-search', 'PropertyController@advanceSearch');
 

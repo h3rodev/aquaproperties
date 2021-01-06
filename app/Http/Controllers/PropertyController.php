@@ -106,6 +106,54 @@ class PropertyController extends Controller
         );
     }
 
+    public function searchByArea($category, $for, $loc, $subloc, $area)
+    {
+        // $properties = Property::simplePaginate(9);
+        $properties = Property::where('category_name','=', $category)
+        ->Where('property_for', '=', $for)
+        ->Where('loc_area_name', '=', $area)
+        ->Where('loc_name', '=', $loc)
+        ->Where('sub_loc_name', '=', $subloc)
+        ->orderBy('is_latest', 'desc')->paginate(9);
+
+            $community_desc = Communities::Where('community_name', '=', str_replace('-', ' ', ucwords($area) ))->first();
+            // $groupByPropertyType = Property::all()->groupBy('property_type');
+            // $groupByPropertyFor = Property::all()->groupBy('property_for');
+            // $groupByCategories = Property::all()->groupBy('category_name');
+    
+            // $groupByBed= Property::all()->groupBy('beds')->sortDesc();
+            // $groupByBath = Property::all()->groupBy('baths');
+            // $groupBySize = Property::all()->groupBy('build_up_area');
+    
+            // $groupByPrice = Property::all()->groupBy('price');
+    
+            // $groupByLocName = Property::all()->groupBy('loc_name');
+            // $groupBySubLocName = Property::all()->groupBy('sub_loc_name');
+            $amenities = PropertyAmenities::all();
+            $features = PropertyFeatures::all();
+            $allGeo = Property::all();
+
+        return view('properties.index', [
+            'properties' => $properties, 
+            'cat' => $category, 
+            'for' => $for, 
+            'loc_name' => $loc, 
+            'loc_area_name' => $area, 
+            'sub_loc_name' => $subloc, 
+            'community_desc' => $community_desc,
+            // 'groupByCategories' => $groupByCategories, 
+            // 'groupByLocName' => $groupByLocName, 
+            // 'groupBySubLocName' => $groupBySubLocName,
+            // 'groupByBed' => $groupByBed,
+            // 'groupByPrice' => $groupByPrice,
+            // 'groupByPropertyFor' => $groupByPropertyFor,
+            // 'groupByLocName' => $groupByLocName,
+            'amenities' => $amenities,
+            'features' => $features,  
+            'allGeo' => $allGeo,        
+            ]  );
+    }
+
     public function searchByLoc($category, $for, $loc)
     {
         // $properties = Property::simplePaginate(9);
@@ -243,13 +291,14 @@ class PropertyController extends Controller
             ]  );
     }
 
-    public function searchByRef($category, $for, $loc, $subloc, $ref)
+    public function searchByRef($category, $for, $loc, $subloc, $area, $ref)
     {
         // $properties = Property::simplePaginate(9);
         $property = Property::where('category_name','=', $category)
             ->Where('property_for', '=', $for)
             ->Where('loc_name', '=', $loc)
             ->Where('sub_loc_name', '=', $subloc)
+            ->where('loc_area_name', '=', $area)
             ->Where('reference', '=', $ref)
             ->orderBy('is_latest', 'desc')->first();
         
@@ -264,6 +313,7 @@ class PropertyController extends Controller
             'cat' => $category, 
             'for' => $for, 
             'loc_name' => $loc, 
+            'loc_area_name' => $area, 
             'sub_loc_name' => $subloc, 
             'member' => $member,
             'simpPoperties' => $simpPoperties,
@@ -273,12 +323,13 @@ class PropertyController extends Controller
     }
     
 
-    public function searchByRefOnly($category, $for, $subloc, $ref)
+    public function searchByRefOnly($category, $for, $subloc,$area, $ref)
     {
         // $properties = Property::simplePaginate(9);
         $property = Property::where('category_name','=', $category)
             ->Where('property_for', '=', $for)
             ->Where('loc_name', '=', '')
+            ->where('loc_area_name', '=', $area)
             ->Where('sub_loc_name', '=', $subloc)
             ->Where('reference', '=', $ref)
             ->orderBy('is_latest', 'desc')->first();
@@ -295,6 +346,7 @@ class PropertyController extends Controller
             'for' => $for, 
             'loc_name' => '', 
             'sub_loc_name' => $subloc, 
+            'loc_area_name' => $area, 
             'member' => $member,
             'simpPoperties' => $simpPoperties,
             'amenities' => $amenities,
@@ -375,6 +427,7 @@ class PropertyController extends Controller
         $category = $request->c ? $request->c : '%';
         $for = $request->f ? $request->f : '%';
         $loc = $request->l ? $request->l : '%';
+        $area = $request->l ? $request->l : '%';
         $subloc = $request->sl ? $request->sl : '%';
         $p = $request->r ? $request->r : '%';
         $ref = $request->r ? $request->r : '%';
@@ -382,12 +435,13 @@ class PropertyController extends Controller
         $properties = Property::where('title','like', $keywords)
         ->Where('category_name', 'like', $category)
         ->Where('property_for', 'like', $for)
+        ->Where('loc_area_name', 'like', strtolower( str_replace(' ','-', $area) ) )
         ->Where('loc_name', 'like', strtolower( str_replace(' ','-', $loc) ) )
         ->Where('sub_loc_name', 'like', strtolower( str_replace(' ','-', $subloc) ) )
 
         ->orderBy('is_latest', 'desc')->paginate(9);
 
-        $community_desc = Communities::Where('community_name', '=', str_replace('-', ' ', ucwords($loc) ))->first();
+        $community_desc = Communities::Where('community_name', '=', str_replace('-', ' ', ucwords($area) ))->first();
 
         // $groupByPropertyType = Property::all()->groupBy('property_type');
         // $groupByPropertyFor = Property::all()->groupBy('property_for');
@@ -411,15 +465,10 @@ class PropertyController extends Controller
         'cat' => $category, 
         'for' => $for, 
         'loc_name' => $loc, 
+        'loc_area_name' => $area, 
         'sub_loc_name' => $subloc, 
         'community_desc' => $community_desc,
-        // 'groupByCategories' => $groupByCategories, 
-        // 'groupByLocName' => $groupByLocName, 
-        // 'groupBySubLocName' => $groupBySubLocName,
-        // 'groupByBed' => $groupByBed,
-        // 'groupByPrice' => $groupByPrice,
-        // 'groupByPropertyFor' => $groupByPropertyFor,
-        // 'groupByLocName' => $groupByLocName,
+
         'amenities' => $amenities,
         'features' => $features, 
         'allGeo' => $allGeo,         
@@ -433,7 +482,7 @@ class PropertyController extends Controller
 
     public function locationApi()
     {
-        $groupByLocName = Property::all()->pluck('loc_name');
+        $groupByLocName = Property::all()->pluck('loc_area_name');
 
         $_loc =  array();
         foreach($groupByLocName as $loc) {

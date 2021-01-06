@@ -10,11 +10,10 @@
 ?>
 
 
-
 @section('title', $pagetitle )
 
 @section('banner-slider')
-<div class="section-banner" style="background:url('../img/banner-2.jpg')">
+<div class="section-banner" style="background:url('/img/banner-2.jpg')">
     <div class="container banner-content">
 
     </div>
@@ -55,7 +54,7 @@
     ?>
 
     <?php
-        if( isset( $loc_name ) && $loc_name != '%'){
+        if( isset( $loc_name ) && $loc_name != '%' && $loc_name != ''){
             ?>
                 <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}">{{  str_replace('-', ' ', $loc_name) }}</a></li>
             <?php
@@ -63,9 +62,17 @@
     ?>
 
     <?php
-        if( isset( $sub_loc_name ) && $sub_loc_name != '%'){
+        if( isset( $sub_loc_name ) && $sub_loc_name != '%' && $sub_loc_name != $loc_name && $sub_loc_name != ''){
             ?>
                 <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}">{{  str_replace('-', ' ', $sub_loc_name) }}</a></li>
+            <?php
+        }
+    ?>
+
+    <?php
+        if( isset( $loc_area_name ) && $loc_area_name != '%'){
+            ?>
+                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai-{{ $loc_name }}/{{ $sub_loc_name }}//{{ $loc_area_name }}">{{  str_replace('-', ' ', $loc_area_name) }}</a></li>
             <?php
         }
     ?>
@@ -96,7 +103,13 @@
                     }
                 }
             ?>
-
+            <?php
+                if( isset( $loc_area_name ) && $loc_area_name != '%'){
+                    ?>
+                        {{  str_replace('-', ' ', $loc_area_name) }}
+                    <?php
+                }
+            ?>
             <?php
                 if( isset( $loc_name ) && $loc_name != '%'){
                     ?>
@@ -106,7 +119,7 @@
             ?>
 
             <?php
-                if( isset( $sub_loc_name ) && $sub_loc_name != '%'){
+                if( isset( $sub_loc_name ) && $sub_loc_name != '%' && $sub_loc_name != $loc_name){
                     ?>
                         {{  str_replace('-', ' ', $sub_loc_name) }}
                     <?php

@@ -47,6 +47,8 @@ class LoadProperties extends Command
      */
     public function handle()
     {
+        Property::query()->truncate();
+
         $properties = Http::get('https://api.rexcrm.com/listings/feed/siteListing?api_key=AYAQALUIAMAPDAMH')->json();
         $collection = collect( $properties['record'] );
     
@@ -100,6 +102,7 @@ class LoadProperties extends Command
                 'city_name' => str_replace(' ', '-', strtolower( $property['city_name'] ) ),
                 'community_id' => $property['location_id'],
                 'loc_name' => utf8_encode( str_replace(' ', '-', strtolower( $property['loc_name'] ) ) ),
+                'loc_area_name' => utf8_encode( str_replace(' ', '-', strtolower( $property['loc_area_name'] ) ) ),
                 'loc_latitude' => $property['sub_loc_latitude'] ? $property['sub_loc_latitude'] : $property['loc_latitude'],
                 'loc_longitude' => $property['loc_longitude'] ? $property['loc_longitude'] : $property['sub_loc_longitude'],
                 'sub_loc_name' => utf8_encode( str_replace(' ', '-', strtolower( $property['sub_loc_name'] ) ) ),

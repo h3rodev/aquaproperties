@@ -53,6 +53,7 @@ class Property extends Model
         'city_name',
         'community_id',
         'loc_name',
+        'loc_area_name',
         'loc_latitude',
         'loc_longitude',
         'sub_loc_name',
