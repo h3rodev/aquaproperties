@@ -178,7 +178,9 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js" integrity="sha512-DNeDhsl+FWnx5B1EQzsayHMyP6Xl/Mg+vcnFPXGNjUZrW28hQaa1+A4qL9M+AiOMmkAhKAWYHh1a+t6qxthzUw==" crossorigin="anonymous"></script>
 
     <script>
-        var input = document.querySelector("#phone_number");
+        var input = document.querySelectorAll(".phone_number");
+        input.forEach(function(input) {
+
 
         window.intlTelInput(input, {
             initialCountry: "auto",
@@ -189,6 +191,7 @@
                 });
             },
         });
+    });
 
 
     $(document).ready(function() {

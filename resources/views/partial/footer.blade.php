@@ -168,18 +168,13 @@
                                 <input value="<?php echo isset($_GET['name']) ? $_GET['name'] : ''; ?>" name="name" type="text" class="form-control" id="footername" aria-describedby="fullnamelHelp" placeholder="Enter Full Name" required="required" aria-required="true">                                                    
                             </div>
 
-                            <div class="row">
-                                <div class="col">
-                                    <div class="form-group">
+                            <div class="form-group">
                                         <input value="<?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?>" name="email" type="email" class="form-control" id="footeremail" aria-describedby="emailHelp" placeholder="Enter email" required="required" aria-required="true">                        
                                     </div>
-                                </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                    <input value="<?php echo isset($_GET['phone_number']) ? $_GET['phone_number'] : ''; ?>" name="phone_number" type="tel" class="form-control" id="footerphone_number" aria-describedby="phoneHelp" placeholder="Phone with country code" required="required" aria-required="true">                        
+                            <div class="form-group">
+                                    <input value="<?php echo isset($_GET['phone_number']) ? $_GET['phone_number'] : ''; ?>" name="phone_number" type="tel" class="form-control phone_number" id="footerphone_number" aria-describedby="phoneHelp" placeholder="Phone with country code" required="required" aria-required="true">                        
                                     </div>
-                                </div>
-                            </div>
+
                             <div class="form-group">
                                 <textarea name="message" type="texarea" class="form-control" id="footermessage" placeholder="Message" rows="3"><?php echo isset($_GET['message']) ? $_GET['message'] : ''; ?></textarea>
                             </div>

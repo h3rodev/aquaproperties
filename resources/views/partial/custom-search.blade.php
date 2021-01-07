@@ -10,10 +10,10 @@
             <div class="search-holder price-search">
                 <?php
                 
-                    if ( isset( $_GET['l'] ) ) {
-                        ?><input type="text" name="l" id="l" placeholder="Community / Building" value="{{ $_GET['l'] }}" class="typeahead tt-query" autocomplete="off" spellcheck="false"><?php
+                    if ( isset( $_GET['a'] ) ) {
+                        ?><input type="text" name="a" id="a" placeholder="Community / Building" value="{{ $_GET['a'] }}" class="typeahead tt-query" autocomplete="off" spellcheck="false"><?php
                     } else {
-                        ?><input type="text" name="l" id="l" placeholder="Community / Building" class="typeahead tt-query" autocomplete="off" spellcheck="false"><?php
+                        ?><input type="text" name="a" id="a" placeholder="Community / Building" class="typeahead tt-query" autocomplete="off" spellcheck="false"><?php
                     }
                 ?>
                 

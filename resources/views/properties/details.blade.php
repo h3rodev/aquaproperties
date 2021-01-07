@@ -251,7 +251,7 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                                 <input value="<?php echo isset($_GET['email']) ? $_GET['email'] : ''; ?>" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required="required" aria-required="true">
                                 </div>
                                 <div class="form-group">
-                                <input value="<?php echo isset($_GET['phone_number']) ? $_GET['phone_number'] : ''; ?>" name="phone_number" type="tel" class="form-control" id="phone_number" aria-describedby="phoneHelp" placeholder="Phone with country code" required="required" aria-required="true">
+                                <input value="<?php echo isset($_GET['phone_number']) ? $_GET['phone_number'] : ''; ?>" name="phone_number" type="tel" class="form-control phone_number" id="phone_number" aria-describedby="phoneHelp" placeholder="Phone with country code" required="required" aria-required="true">
                                 </div>
 
                                 <input type='text' class="form-control" id='daypicker' name='daypicker' placeholder="Pick your preferred date and time"/>
