@@ -30,24 +30,24 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/properties">Properties in Dubai</a></li>
-<?php
-        if( isset( $cat ) && $cat != '%' ){
-            ?>
-                <li class="breadcrumb-item"><a href="/{{ $cat }}-for-{{$for ?? ''}}-in-dubai">{{  str_replace('_', ' ', $cat) }}</a></li>
-            <?php
-        } else {}
-    ?>
-    
+        <?php
+            if( isset( $cat ) && $cat != '%' ){
+                ?>
+                    <li class="breadcrumb-item"><a href="/{{ $cat }}-for-{{$for ?? ''}}-in-dubai">{{  str_replace('_', ' ', $cat) }}</a></li>
+                <?php
+            } else {}
+        ?>
+
     <?php
         if( isset( $for ) && $for != '%'){
             if( isset( $cat ) && $cat != '%' ){
                 ?>
-                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai">for {{ $for ?? '' }} in Dubai</a></li>
+                <li class="breadcrumb-item"><a href="/{{  $cat }}-for-{{$for ?? ''}}-in-dubai">for {{ $for ?? '' }} in Dubai</a></li>
             <?php
                 
             } else {
                 ?>
-                <li class="breadcrumb-item"><a href="/{{  $cat ?? 'properties'}}-for-{{$for ?? ''}}-in-dubai">for {{ $for ?? '' }}</a></li>
+                <li class="breadcrumb-item"><a href="/property-for-{{$for ?? ''}}-in-dubai">for {{ $for ?? '' }}</a></li>
             <?php
             }
         }
@@ -155,8 +155,17 @@
         </section>
         @endif
         <div class="pagination-holder">
-            {{ $properties->links() }}
+            {!! $properties->appends(request()->input())->links(); !!}
         </div>
+
+        @if($pagecontents ?? '')
+            <div class="card mt-5">
+                <div class="card-body">
+                    {!! $pagecontents['body'] !!}
+                </div>
+            </div>
+        @endif
     </div>
 </section>
+
 @stop

@@ -9,6 +9,7 @@ use App\Communities;
 use App\Member;
 use App\PropertyAmenities;
 use App\PropertyFeatures;
+use App\Page;
 
 class PropertyController extends Controller
 {
@@ -56,7 +57,7 @@ class PropertyController extends Controller
 
     public function searchByCategoryFor($category, $for)
     {
-        // $properties = Property::simplePaginate(9);
+        $_catSlugFor = $category.'-for-'.$for.'-in-dubai';
 
         if($category == 'property'){
             $properties = Property::Where('property_for', '=', $for)
@@ -69,8 +70,12 @@ class PropertyController extends Controller
             ->Where('property_for', '=', $for)
             ->orderBy('is_latest', 'desc')->paginate(9);
         }
+
+        $pagecontents = Page::findBySlug($_catSlugFor);
         $allGeo = Property::all();
         $community_desc = "";
+
+        
         // $groupByPropertyType = Property::all()->groupBy('property_type');
         // $groupByPropertyFor = Property::all()->groupBy('property_for');
         // $groupByCategories = Property::all()->groupBy('category_name');
@@ -98,7 +103,8 @@ class PropertyController extends Controller
             // 'groupByBed' => $groupByBed,
             // 'groupByPrice' => $groupByPrice,
             // 'groupByPropertyFor' => $groupByPropertyFor,
-            // 'groupByLocName' => $groupByLocName,      
+            // 'groupByLocName' => $groupByLocName,   
+            'pagecontents' => $pagecontents,   
             'amenities' => $amenities,
             'features' => $features,
             'allGeo' => $allGeo,
@@ -450,6 +456,10 @@ class PropertyController extends Controller
         $subloc = $request->sl ? $request->sl : '%';
         $p = $request->r ? $request->r : '%';
         $ref = $request->r ? $request->r : '%';
+        $_minprice = $request->minprice ? $request->minprice: 0;
+        $_maxprice = $request->maxprice ? $request->maxprice: 50000000;
+        $_minbed = $request->_minbed ? $request->_minbed: 0;
+        $_maxbed = $request->_maxbed ? $request->_maxbed: 9;
 
         $properties = Property::where('title','like', $keywords)
         ->Where('category_name', 'like', $category)
@@ -457,8 +467,12 @@ class PropertyController extends Controller
         ->Where('loc_area_name', 'like', strtolower( str_replace(' ','-', $area) ) )
         ->Where('loc_name', 'like', strtolower( str_replace(' ','-', $loc) ) )
         ->Where('sub_loc_name', 'like', strtolower( str_replace(' ','-', $subloc) ) )
+        ->whereBetween('price', [$_minprice, $_maxprice])
+        ->whereBetween('beds', [$_minbed, $_maxbed])
+        ->orderBy('price', 'asc')->paginate(9);
 
-        ->orderBy('is_latest', 'desc')->paginate(9);
+        $_catSlugFor = $category.'-for-'.$for.'-in-dubai';
+        $pagecontents = Page::findBySlug($_catSlugFor);
 
         $community_desc = Communities::Where('community_name', '=', str_replace('-', ' ', ucwords($area) ))->first();
 
@@ -477,6 +491,7 @@ class PropertyController extends Controller
         'community_desc' => $community_desc,
         'amenities' => $amenities,
         'features' => $features, 
+        'pagecontents'=>$pagecontents,
         'allGeo' => $allGeo,         
         ]  
     ); 
