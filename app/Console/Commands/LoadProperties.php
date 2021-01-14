@@ -171,7 +171,7 @@ class LoadProperties extends Command
              ]);
         }
 
-        $this->info( $ref . 'Updated' );
+        $this->info( $ref . ' Updated' );
     }
 
     public function updatePropertyAmenities($ref) {
@@ -198,13 +198,14 @@ class LoadProperties extends Command
              ]);
         }
 
-        $this->info( $ref . 'Updated' );
+        $this->info( $ref . ' Updated' );
     }
 
     public function updatePropertyIfLatest() {
         $latestProperty = Property::whereDate('created_at', Carbon::now()->subDays(7))
         ->update([
-            'is_latest' => 1
+            'is_latest' => 1,
+            'is_featured' => 1,
          ]);
         
         $this->info( $latestProperty );

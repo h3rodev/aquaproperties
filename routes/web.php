@@ -34,6 +34,11 @@ Route::get('/{category}-for-{for}-in-dubai-/{subloc?}', 'PropertyController@sear
 Route::get('/{category}-for-{for}-in-dubai-{loc?}/{subloc?}', 'PropertyController@searchBySubLoc');
 
 Route::get('/{category}-for-{for}-in-dubai-{loc?}/{subloc?}/{area?}', 'PropertyController@searchByArea');
+
+
+Route::get('/{category}-for-{for}-in-{area?}', 'PropertyController@byArea');
+
+
 Route::get('/{category}-for-{for}-in-dubai-/{subloc?}/{area?}', 'PropertyController@searchByAreaOnly');
 
 Route::get('/{category}-for-{for}-in-dubai-/{subloc?}', 'PropertyController@searchBySubLocOnly');

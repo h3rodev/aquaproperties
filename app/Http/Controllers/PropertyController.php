@@ -519,4 +519,36 @@ class PropertyController extends Controller
         return $_loc;
     }
 
+
+
+
+    
+
+    public function byArea($category, $for, $area)
+    {
+        // $properties = Property::simplePaginate(9);
+        $properties = Property::where('category_name','=', $category)
+        ->Where('property_for', '=', $for)
+        ->Where('loc_area_name', '=', $area)
+        ->orderBy('is_latest', 'desc')->paginate(9);
+
+            $community_desc = Communities::Where('community_name', '=', str_replace('-', ' ', ucwords($area) ))->first();
+
+            $amenities = PropertyAmenities::all();
+            $features = PropertyFeatures::all();
+            $allGeo = Property::all();
+
+        return view('properties.index', [
+            'properties' => $properties, 
+            'cat' => $category, 
+            'for' => $for, 
+            'loc_name' => '', 
+            'loc_area_name' => $area, 
+            'sub_loc_name' => '', 
+            'community_desc' => $community_desc,
+            'amenities' => $amenities,
+            'features' => $features,  
+            'allGeo' => $allGeo,        
+            ]  );
+    }
 }
