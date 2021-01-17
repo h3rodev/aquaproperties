@@ -254,7 +254,7 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                                 <input value="<?php echo isset($_GET['phone_number']) ? $_GET['phone_number'] : ''; ?>" name="phone_number" type="tel" class="form-control phone_number" id="phone_number" aria-describedby="phoneHelp" placeholder="Phone with country code" required="required" aria-required="true">
                                 </div>
 
-                                <input type='text' class="form-control" id='daypicker' name='daypicker' placeholder="Pick your preferred date and time"/>
+                                <input type='text' class="form-control" id='daypicker' name='daypicker' placeholder="Pick your preferred date and time" required="required" aria-required="true">
 
                                 <small id="emailHelp" class="form-text text-muted mb-3">We'll never share your information with anyone else.</small>
 
@@ -472,7 +472,7 @@ $pagetitle = $property['title']. ' ' .$property['category_name']. ' for ' .$prop
                     subject:subject ? subject : $pagetitle,
                     'source':source ? source : 'Organic',
                     'sub_source':sub_source ? sub_source : 'Website Listing',
-                    'campaign':campaign ? campaign : 'Generic',
+                    'campaign':campaign ? campaign : null,
                     'medium':medium ? medium : 'Website',
                     'listing_reference':reference_number,
                     'agent_reference':agentid,

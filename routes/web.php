@@ -90,6 +90,9 @@ Route::get('/api/form-check', 'formController@check');
 Route::post('/api/form-check', 'formController@check');
 
 
+Route::get('/api/nyc', 'nycController@index');
+
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
