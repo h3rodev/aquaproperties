@@ -11,11 +11,12 @@ class nycController extends Controller
 
     public function index()
     {
-        //$nycs = Http::get('https://api.rexcrm.com/listings/feed/siteListing?api_key=AYAQALUIAMAPDAMH')->json();
-        //$collection = collect( $nycs['record'] );
+        $nycs = Http::get('https://api.rexcrm.com/leads/nyc-by-department')->json();
+        $collection = collect( $nycs['record']);
+
 
         return view('nyc.index', [
-            'data' => '' //$collection
+            'datas' => $collection
         ]);
     }
 
