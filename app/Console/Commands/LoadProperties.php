@@ -49,7 +49,7 @@ class LoadProperties extends Command
     {
         Property::query()->truncate();
 
-        $properties = Http::get('https://api.rexcrm.com/listings/feed/siteListing?api_key=AYAQALUIAMAPDAMH')->json();
+        $properties = Http::get()->json();
         $collection = collect( $properties['record'] );
     
         $count = 1;
