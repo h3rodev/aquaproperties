@@ -44,7 +44,7 @@ class LoadAgents extends Command
     {
         Member::query()->truncate();
 
-        $comminities = Http::get('https://api.rexcrm.com/users/feed/usersInJson?api_key=YHAHALMIMSABDJAD')->json();
+        $comminities = Http::get()->json();
         $collection = collect( $comminities['record'] );
         
         
